@@ -1,10 +1,10 @@
-===Eclipse===
+==Eclipse==
 
 Eclipse is a powerful develomentenvironent that suits perfect for Android development. This wiki page covers information about Eclipse and its powerful plugins.
 
 Download: http://www.eclipse.org/downloads/
 
-===Plugins===
+==Plugins==
 
 *Subclipse*
 Use subclipse to get CVS/SVN functionality in Eclipse. 
