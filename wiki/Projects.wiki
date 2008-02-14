@@ -1,3 +1,6 @@
+=Project discussion=
+This wiki page is used for discussing different projects that seems interesting. Here we can share our thoughts and ideas.
+
 =Idéas for application functionality=
 
  * GeoFriends 		(locate friends)
