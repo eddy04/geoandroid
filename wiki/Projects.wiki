@@ -1,0 +1,19 @@
+=Idéas for application functionality=
+
+ * GeoFriends 		(locate friends)
+
+ * GeoInfo		(info based on users geo position and interest. Examples: Turist info, gossip, WiFi connectivity etc.)
+
+ * GeoPlanner		(meeting, tasks etc connected to geo position)
+
+ * GeoBlog		(blog connected to geo positon)
+
+ * GeoHistory/GeoFuture	(time machine of geo positions)
+
+ * GeoTrainer		(running circuits, time, distance etc.)
+
+ * GeoTime		(some type of world clock)
+
+ * GeoCommercial	(Commercial based on geo position...money money!)
+
+ * GeoGame		(location based games)
