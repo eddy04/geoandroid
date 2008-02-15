@@ -1,2 +1,0 @@
-=Coding discussion=
-This wiki page is used for sharing coding guidelines, tips&tricks etc to project members.
