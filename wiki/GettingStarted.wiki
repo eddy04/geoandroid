@@ -1,8 +1,9 @@
 _Getting started with android development_
 
 = Getting started =
-[http://code.google.com/android/intro/index.html Install Eclipse]
-Install Android SDK
-Install Subclipse (subversion for Eclipse)
 
-[http://www.google.com Google home page].
+[http://www.eclipse.org/ Install Eclipse]
+
+[http://code.google.com/android/intro/index.html Install Android SDK]
+
+[http://wiki.eclipse.org/index.php/Getting_started_with_Buckminster Install Subclipse and Buckminster] (subversion for Eclipse)
