@@ -1,4 +1,4 @@
-_Getting started with android development_
+#summary Getting started with android development
 
 [http://www.eclipse.org/ Install Eclipse]
 
