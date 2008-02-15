@@ -1,7 +1,5 @@
 _Getting started with android development_
 
-= Getting started =
-
 [http://www.eclipse.org/ Install Eclipse]
 
 [http://code.google.com/android/intro/index.html Install Android SDK]
