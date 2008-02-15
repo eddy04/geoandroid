@@ -1,7 +1,8 @@
-#How to get started with android development
+_Getting started with android development_
 
 = Getting started =
-
-Install Eclipse[http://code.google.com/android/intro/index.html]
+[http://code.google.com/android/intro/index.html Install Eclipse]
 Install Android SDK
 Install Subclipse (subversion for Eclipse)
+
+[http://www.google.com Google home page].
