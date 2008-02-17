@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.geoandroid">
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+	<uses-permission android:name="android.permission.ACCESS_LOCATION"/>
+  	<uses-permission android:name="android.permission.ACCESS_GPS"/>
+  	<uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS"/>
+  	<uses-permission android:name="android.permission.ACCESS_CELL_ID"/>
+	  
+    <application android:icon="@drawable/icon">
+        <activity android:name=".GeoAndroid" android:label="@string/main_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".GeoAndroidMap" android:label="@string/map_title">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest> 
