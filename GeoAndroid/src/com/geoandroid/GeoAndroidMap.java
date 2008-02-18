@@ -63,7 +63,7 @@ public class GeoAndroidMap extends MapActivity {
 				new IntentFilter(MY_LOCATION_CHANGED_ACTION);
 	
 	/** List of friends in */
-	protected ArrayList<Friend> nearFriends = new ArrayList<Friend>();
+	protected ArrayList<Friend> allFriends = new ArrayList<Friend>();
 	
 	// ===========================================================
 	// Extra-Classes
@@ -130,7 +130,7 @@ public class GeoAndroidMap extends MapActivity {
         	
         	int[] friendScreenCoords = new int[2];
         	//Draw each friend with a line pointing to our own location.
-        	for(Friend aFriend : GeoAndroidMap.this.nearFriends){
+        	for(Friend aFriend : GeoAndroidMap.this.allFriends){
         		lat = aFriend.itsLocation.getLatitude() * 1E6;
         		lng = aFriend.itsLocation.getLongitude() * 1E6;
         		point = new Point(lat.intValue(), lng.intValue());
@@ -201,7 +201,7 @@ public class GeoAndroidMap extends MapActivity {
 		
 		/* Update the list of our friends once on the start,
 		 * as they are not(yet) moving, no updates to them are necessary */
-		this.refreshFriendsList(NEARFRIEND_MAX_DISTANCE);
+		this.refreshFriendsList();
 	}
 	
 	/**
@@ -334,7 +334,19 @@ public class GeoAndroidMap extends MapActivity {
 		// this.refreshFriendsList(NEARFRIEND_MAX_DISTANCE);
 	}
 	
-	private void refreshFriendsList(long maxDistanceInMeter){
+	private void refreshFriendsList(){
+		Location friendLocation = new Location();
+		friendLocation.setLongitude(13.3209228515625);
+		friendLocation.setLatitude(55.85219164310742);
+		allFriends.add(new Friend(friendLocation, "Bob Lund"));
+		
+		friendLocation = new Location();
+		friendLocation.setLongitude(13.49395751953125);
+		friendLocation.setLatitude(55.49752723542657);
+		allFriends.add(new Friend(friendLocation, "Su Ellen"));
+	}
+	
+	private void refreshFriendsList2(long maxDistanceInMeter){
 		Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, People.NAME + " ASC");
 		startManagingCursor(c);
 
@@ -372,7 +384,7 @@ public class GeoAndroidMap extends MapActivity {
 				if(friendLocation != null 
 						&& this.myLocation.distanceTo(friendLocation) < maxDistanceInMeter){
 					String friendName = c.getString(nameColumn);
-					nearFriends.add(new Friend(friendLocation, friendName));
+					allFriends.add(new Friend(friendLocation, friendName));
 				}
 			} while (c.next());
 		}
