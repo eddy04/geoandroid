@@ -66,7 +66,7 @@ public class GeoAndroid extends ListActivity {
 	
 	/** Minimum distance in meters for a friend 
 	 * to be recognize as a Friend to be drawn */
-	protected static final int NEARFRIEND_MAX_DISTANCE = 10000000;  // 10.000km
+	protected static final int NEARFRIEND_MAX_DISTANCE = 100000000;  // 10.000km
 	
 	/** List of friends in */
 	protected ArrayList<Friend> allFriends = new ArrayList<Friend>();
@@ -271,6 +271,17 @@ public class GeoAndroid extends ListActivity {
 	// ===========================================================
 	
 	private void refreshFriendsList(){
+		Location friendLocation = new Location();
+		friendLocation.setLongitude(13.3209228515625);
+		friendLocation.setLatitude(55.85219164310742);
+		allFriends.add(new Friend(friendLocation, "Bob Lund"));
+		
+		friendLocation = new Location();
+		friendLocation.setLongitude(13.49395751953125);
+		friendLocation.setLatitude(55.49752723542657);
+		allFriends.add(new Friend(friendLocation, "Su Ellen"));
+	}
+	private void refreshFriendsList2(){
 		Cursor c = getContentResolver().query(People.CONTENT_URI, 
 				null, null, null, People.NAME + " ASC");
 		/* This method allows the activity to take
@@ -354,7 +365,7 @@ public class GeoAndroid extends ListActivity {
 		
 		long beforeIndex = 0;
 		if(this.getListAdapter() != null)
-			//beforeIndex = this.getSelectionRowID();
+			beforeIndex = this.getSelectedItemId();
 			
 		this.setListAdapter(notes);
 		
