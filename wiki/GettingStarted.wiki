@@ -5,3 +5,12 @@
 [http://code.google.com/android/intro/index.html Install Android SDK]
 
 [http://wiki.eclipse.org/index.php/Getting_started_with_Buckminster Install Subclipse and Buckminster] (subversion for Eclipse)
+
+===How to check out project===
+In Eclipse:
+ # File->import->Other->Check out projects from SVN
+ # Choose repository https://geoandroid.googlecode.com/svn/trunk/
+ # Choose to check out GeoAndroid folder
+ # When project has been created, right click on project folder and choose Android Tools->Fix project properties
+
+Now the project has been checked out and reconfigured to be able to run on your machine.
