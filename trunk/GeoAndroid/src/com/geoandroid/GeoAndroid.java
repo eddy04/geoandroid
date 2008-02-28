@@ -41,6 +41,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
 
+import com.geoandroid.web.*;
+
 public class GeoAndroid extends ListActivity {
 	// ===========================================================
 	// Fields
@@ -160,6 +162,13 @@ public class GeoAndroid extends ListActivity {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
+		/* Log on to web service */
+		try {
+			Ipoki.sendWebReg("dangrahn", "k4rd1na!");
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}
+		
 		/* The first thing we need to do is to setup our own 
 		 * locationManager, that will support us with our own gps data */
 		this.myLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -331,6 +340,13 @@ public class GeoAndroid extends ListActivity {
 	private void updateList() {
 		// Refresh our location...
 		this.myLocation = myLocationManager.getCurrentLocation("gps");
+		
+		//Add new position to web service
+		try {
+			Ipoki.sendWebPos(Double.toString(this.myLocation.getLatitude()), Double.toString(this.myLocation.getLongitude()));
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}
 		
 		ArrayList<String> listItems = new ArrayList<String>();
 		
