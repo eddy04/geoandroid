@@ -1,5 +1,6 @@
 package com.geoandroid;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,9 +21,11 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Contacts.People;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 
+import com.geoandroid.web.Ipoki;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -210,6 +213,14 @@ public class GeoAndroidMap extends MapActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		/* Log on to web service 
+		try {
+			Ipoki.sendWebReg("dangrahn", "k4rd1na!");
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}*/
+		
 		this.doUpdates = true;
 		
 		/* As we only want to react on the LOCATION_CHANGED
@@ -229,6 +240,14 @@ public class GeoAndroidMap extends MapActivity {
 	@Override
 	public void onFreeze(Bundle icicle) {
 		this.doUpdates = false;
+		
+		/* Log out of web service 
+		try {
+			Ipoki.sendWebDisconnection();
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}*/
+		
 		unregisterReceiver(this.myIntentReceiver);
 		super.onFreeze(icicle);
 	}
@@ -334,59 +353,33 @@ public class GeoAndroidMap extends MapActivity {
 		// this.refreshFriendsList(NEARFRIEND_MAX_DISTANCE);
 	}
 	
-	private void refreshFriendsList(){
+	/*private void refreshFriendsList(){
 		Location friendLocation = new Location();
 		friendLocation.setLongitude(13.3209228515625);
 		friendLocation.setLatitude(55.85219164310742);
-		allFriends.add(new Friend(friendLocation, "Bob Lund"));
+		allFriends.add(new Friend(friendLocation, "Bob Lund", "xxx"));
 		
 		friendLocation = new Location();
 		friendLocation.setLongitude(13.49395751953125);
 		friendLocation.setLatitude(55.49752723542657);
-		allFriends.add(new Friend(friendLocation, "Su Ellen"));
-	}
+		allFriends.add(new Friend(friendLocation, "Su Ellen", "xxx"));
+	}*/
 	
-	private void refreshFriendsList2(long maxDistanceInMeter){
-		Cursor c = getContentResolver().query(People.CONTENT_URI, null, null, null, People.NAME + " ASC");
-		startManagingCursor(c);
-
-		int notesColumn = c.getColumnIndex(People.NOTES);
-		int nameColumn = c.getColumnIndex(People.NAME);
+	private void refreshFriendsList(){
 		
-		// Moves the cursor to the first row
-		// and returns true if there is sth. to get
-		if (c.first()) {
-			do {		
-				String notesString = c.getString(notesColumn);
+		Friend[] friends = null;
 				
-				Location friendLocation = null;
-				if (notesString != null) {
-					// Pattern for extracting geo-ContentURIs from the notes.
-					final String geoPattern = "(geo:[\\-]?[0-9]{1,3}\\.[0-9]{1,6}\\,[\\-]?[0-9]{1,3}\\.[0-9]{1,6}\\#)";
-					// Compile and use regular expression
-					Pattern pattern = Pattern.compile(geoPattern);
-
-					CharSequence inputStr = notesString;
-					Matcher matcher = pattern.matcher(inputStr);
-
-					boolean matchFound = matcher.find();
-					if (matchFound) {
-						// We take the first match available
-						String groupStr = matcher.group(0);
-						// And parse the Lat/Long-GeoPos-Values from it
-						friendLocation = new Location();
-						String latid = groupStr.substring(groupStr.indexOf(":") + 1, groupStr.indexOf(","));
-						String longit = groupStr.substring(groupStr.indexOf(",") + 1, groupStr.indexOf("#"));
-						friendLocation.setLongitude(Float.parseFloat(longit));
-						friendLocation.setLatitude(Float.parseFloat(latid));
-					}
-				}
-				if(friendLocation != null 
-						&& this.myLocation.distanceTo(friendLocation) < maxDistanceInMeter){
-					String friendName = c.getString(nameColumn);
-					allFriends.add(new Friend(friendLocation, friendName));
-				}
-			} while (c.next());
+		try {
+			friends = Ipoki.getFriendsPos();
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}
+		
+		if(friends != null) {
+			for(int i = 0; i<friends.length; ++i) {
+				allFriends.add(friends[i]);
+			}
 		}
 	}
+	
 }

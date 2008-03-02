@@ -10,10 +10,11 @@ import java.net.HttpURLConnection;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 import android.graphics.Bitmap;
-import android.util.Log;
-	
+import android.location.Location;
+
+import com.geoandroid.Friend;
+
 public class Ipoki {
 
 	private static final String urlConnect = "http://www.ipoki.com/signin.php";
@@ -35,7 +36,6 @@ public class Ipoki {
 		
 		String messageType = messages[0];
 		
-		// Si el tipo es CODIGO, obtenemos el IdSeguro
 		if (messageType.equals("CODIGO"))
 		{
 			State.secureId = messages[1];
@@ -169,10 +169,41 @@ public class Ipoki {
 		sendWebRequestString(url);
 	}
 	
+	public static Friend[] getFriendsPos() throws IOException
+	{
+		java.util.Vector<Friend> friends = new java.util.Vector<Friend>();
+		
+		String url = urlFriends + "?iduser=" + State.secureId;
+		// Return: echo "$$$".[username]."$$$".[latitude]."$$$".[longitude]."$$$".[session key];
+		
+		String message = sendWebRequestString(url);
+		String[] messages = parseMessage(message);
+
+		if (messages.length == 0)
+			throw new IOException("Error: getFriendsPos() return message is empty");		
+	
+		for(int i=1; i<messages.length;i=i+4){
+			Location friendLocation = null;
+			friendLocation = new Location();
+
+			friendLocation.setLongitude(Float.parseFloat(messages[i+1]));
+			friendLocation.setLatitude(Float.parseFloat(messages[i+2]));
+			
+			friends.addElement(new Friend(friendLocation, messages[i], messages[i+3]));
+		}
+
+		Friend[] result = new Friend[friends.size()];
+		friends.copyInto(result);
+		return result;	
+	}
+	
 	public static void sendWebDisconnection() throws IOException
 	{
 		String url = urlDisconnect + "?iduser=" + State.secureId;
-		sendWebRequestString(url);
+		String message = sendWebRequestString(url);
+		
+		if(!message.equals("OK"))
+			throw new IOException("Error: Disconnecting with web service failed");
 	}
 	
 	private static String[] parseMessage(String message)
