@@ -177,6 +177,13 @@ public class GeoAndroidMap extends MapActivity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		
+		/* Log on to web service */
+		try {
+			Ipoki.sendWebReg("dangrahn", "passpass");
+		} catch(IOException e) {
+			 Log.e(getString(R.string.main_title), e.toString(), e);
+		}
+		
 		/* Create a new MapView and show it */
 		this.myMapView = new MapView(this);
 		
