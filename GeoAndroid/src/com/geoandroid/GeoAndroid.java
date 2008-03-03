@@ -164,7 +164,7 @@ public class GeoAndroid extends ListActivity {
 
 		/* Log on to web service */
 		try {
-			Ipoki.sendWebReg("dangrahn", "k4rd1na!");
+			Ipoki.sendWebReg("dangrahn", "passpass");
 		} catch(IOException e) {
 			 Log.e(getString(R.string.main_title), e.toString(), e);
 		}
@@ -196,7 +196,7 @@ public class GeoAndroid extends ListActivity {
 		
 		/* Log on to web service */
 		try {
-			Ipoki.sendWebReg("dangrahn", "k4rd1na!");
+			Ipoki.sendWebReg("dangrahn", "passpass");
 		} catch(IOException e) {
 			 Log.e(getString(R.string.main_title), e.toString(), e);
 		}
