@@ -37,23 +37,21 @@ public class Settings extends ListActivity {
 	}
 
 
-	/** Called only the first time the options menu is displayed.
-	 * Create the menu entries.
-	 *  Menus are added in the order they are hardcoded. */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean supRetVal = super.onCreateOptionsMenu(menu);
-		menu.add(0, 0, getString(R.string.main_menu_open_map));
+		menu.add(0, 0, getString(R.string.settings_close));
 		return supRetVal;
 	}
+	
 	@Override
-	public boolean onOptionsItemSelected(Menu.Item item) {
-		switch (item.getId()) {
-			case 0:
-				startSubActivity(new Intent(this, GeoAndroidMap.class), 0);
-				return true;
-		}
-		return false;
+	public boolean onOptionsItemSelected(Menu.Item item){
+	    switch (item.getId()) {
+		    case 0:
+		    	this.finish();
+		        return true;
+	    }
+	    return false;
 	}
 
 }

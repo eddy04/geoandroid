@@ -272,7 +272,7 @@ public class GeoAndroidMap extends MapActivity {
 		menu.add(0, 0, getString(R.string.map_menu_zoom_in));
 		menu.add(0, 1, getString(R.string.map_menu_zoom_out));
 		menu.add(0, 2, getString(R.string.map_menu_toggle_street_satellite));
-		menu.add(0, 3, getString(R.string.map_menu_back_to_list));
+		menu.add(0, 3, getString(R.string.map_menu_settings));
 		return supRetVal;
 	}
 	
@@ -292,7 +292,8 @@ public class GeoAndroidMap extends MapActivity {
 	            myMapView.toggleSatellite();
 		        return true;
 		    case 3:
-		    	this.finish();
+		    	startSubActivity(new Intent(this, Settings.class), 0);
+		    	//this.finish();
 		        return true;
 	    }
 	    return false;
