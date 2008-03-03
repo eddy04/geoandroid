@@ -186,10 +186,10 @@ public class Ipoki {
 			Location friendLocation = null;
 			friendLocation = new Location();
 
-			friendLocation.setLongitude(Float.parseFloat(messages[i+1]));
-			friendLocation.setLatitude(Float.parseFloat(messages[i+2]));
+			friendLocation.setLatitude(Float.parseFloat(messages[i+1]));
+			friendLocation.setLongitude(Float.parseFloat(messages[i+2]));
 			
-			friends.addElement(new Friend(friendLocation, messages[i], messages[i+3]));
+			friends.addElement(new Friend(friendLocation, messages[i], messages[i]));
 		}
 
 		Friend[] result = new Friend[friends.size()];
