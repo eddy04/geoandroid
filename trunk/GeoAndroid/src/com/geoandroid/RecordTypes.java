@@ -1,7 +1,6 @@
 package com.geoandroid;
 
-public class RecordTypes 
-{
+public class RecordTypes {
 	public static final int USER = 1;
 	public static final int PASSWORD = 2;
 	public static final int POSITIONSOURCE = 3;

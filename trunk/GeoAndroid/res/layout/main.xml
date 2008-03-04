@@ -4,8 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  id="@+id/row_entry"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    />
+	<TextView  id="@+id/row_entry"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    />
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.geoandroid.web;
  
-public class WebResult
-{
+public class WebResult {
 	public static final int CODE_OK = 0;
 	public static final int ALERT_OK = 1;
 	public static final int CODE_ERROR = 251;

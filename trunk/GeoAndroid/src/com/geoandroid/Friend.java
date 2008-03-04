@@ -2,7 +2,7 @@ package com.geoandroid;
 
 import android.location.Location;
 
-public class Friend{
+public class Friend {
 	public Location itsLocation = null;
 	public String itsName = null;
 	public String itsSessionKey;

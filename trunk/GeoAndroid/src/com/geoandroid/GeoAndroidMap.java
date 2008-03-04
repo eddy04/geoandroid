@@ -181,13 +181,15 @@ public class GeoAndroidMap extends MapActivity {
 		try {
 			Ipoki.sendWebReg("dangrahn", "passpass");
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.map_title), e.toString(), e);
 		}
 		
 		/* Create a new MapView and show it */
 		this.myMapView = new MapView(this);
 		
 		this.setContentView(myMapView);
+		//this.setContentView(R.layout.map); TODO add xml layout
+		
 		/* MapController is capable of zooming 
 		 * and animating and stuff like that */
 		this.myMapController = this.myMapView.getController();
@@ -272,7 +274,8 @@ public class GeoAndroidMap extends MapActivity {
 		menu.add(0, 0, getString(R.string.map_menu_zoom_in));
 		menu.add(0, 1, getString(R.string.map_menu_zoom_out));
 		menu.add(0, 2, getString(R.string.map_menu_toggle_street_satellite));
-		menu.add(0, 3, getString(R.string.map_menu_settings));
+		menu.add(0, 3, getString(R.string.map_menu_friendlist));
+		menu.add(0, 4, getString(R.string.map_menu_settings));
 		return supRetVal;
 	}
 	
@@ -292,8 +295,10 @@ public class GeoAndroidMap extends MapActivity {
 	            myMapView.toggleSatellite();
 		        return true;
 		    case 3:
+		    	startSubActivity(new Intent(this, FriendList.class), 0);
+		        return true;
+		    case 4:
 		    	startSubActivity(new Intent(this, Settings.class), 0);
-		    	//this.finish();
 		        return true;
 	    }
 	    return false;
@@ -380,7 +385,7 @@ public class GeoAndroidMap extends MapActivity {
 		try {
 			friends = Ipoki.getFriendsPos();
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.map_title), e.toString(), e);
 		}
 		
 		if(friends != null) {
