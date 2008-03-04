@@ -94,7 +94,7 @@ public class FriendList extends ListActivity {
 	
 	   private class ServiceStateHandler extends Handler {
 	        public void handleMessage(Message msg) {
-	            Log.i(getString(R.string.main_title), "Trying to detect Cell ID and LAC" + msg.what);
+	            Log.i(getString(R.string.friendlist_title), "Trying to detect Cell ID and LAC" + msg.what);
 	        switch (msg.what) {
 	            case MY_NOTIFICATION_ID:
 	                ServiceState state = mPhoneStateReceiver.getServiceState();
@@ -103,7 +103,7 @@ public class FriendList extends ListActivity {
 	                try {
 	                    convertCellID(notification_cid , notification_lac);
 	                } catch (Exception e) {
-	                    Log.e(getString(R.string.main_title), e.toString(), e);
+	                    Log.e(getString(R.string.friendlist_title), e.toString(), e);
 	                }
 	                break;
 	        }
@@ -166,7 +166,7 @@ public class FriendList extends ListActivity {
 		try {
 			Ipoki.sendWebReg("dangrahn", "passpass");
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.friendlist_title), e.toString(), e);
 		}
 		
 		/* The first thing we need to do is to setup our own 
@@ -198,7 +198,7 @@ public class FriendList extends ListActivity {
 		try {
 			Ipoki.sendWebReg("dangrahn", "passpass");
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.friendlist_title), e.toString(), e);
 		}
 		
 		this.doUpdates = true;
@@ -252,7 +252,7 @@ public class FriendList extends ListActivity {
 			
 			/* Intent receiver reacting on our update request. */ 
 			this.myIntentReceiver = new MyIntentReceiver();
-			Log.i(getString(R.string.main_title), "GPS Detected and setup for autorefreshing");
+			Log.i(getString(R.string.friendlist_title), "GPS Detected and setup for autorefreshing");
 			}
 		else {
 			this.gps = false;
@@ -264,7 +264,7 @@ public class FriendList extends ListActivity {
 	        mPhoneStateReceiver.notifyPhoneCallState(MY_NOTIFICATION_ID);
 	        mPhoneStateReceiver.notifySignalStrength(MY_NOTIFICATION_ID);
 	        mPhoneStateReceiver.registerIntent();
-			Log.i(getString(R.string.main_title), "Virtual GPS Detected and setup for autorefreshing");
+			Log.i(getString(R.string.friendlist_title), "Virtual GPS Detected and setup for autorefreshing");
 		}
 		/* 
 		 * In onResume() the following method will be called automatically!
@@ -278,14 +278,14 @@ public class FriendList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean supRetVal = super.onCreateOptionsMenu(menu);
-		menu.add(0, 0, getString(R.string.main_menu_open_map));
+		menu.add(0, 0, getString(R.string.friendlist_close));
 		return supRetVal;
 	}
 	@Override
 	public boolean onOptionsItemSelected(Menu.Item item) {
 		switch (item.getId()) {
 			case 0:
-				startSubActivity(new Intent(this, GeoAndroidMap.class), 0);
+		    	this.finish();
 				return true;
 		}
 		return false;
@@ -314,7 +314,7 @@ public class FriendList extends ListActivity {
 		try {
 			friends = Ipoki.getFriendsPos();
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.friendlist_title), e.toString(), e);
 		}
 		
 		if(friends != null) {
@@ -332,7 +332,7 @@ public class FriendList extends ListActivity {
 		try {
 			Ipoki.sendWebPos(Double.toString(this.myLocation.getLatitude()), Double.toString(this.myLocation.getLongitude()));
 		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
+			 Log.e(getString(R.string.friendlist_title), e.toString(), e);
 		}
 		
 		ArrayList<String> listItems = new ArrayList<String>();
@@ -342,7 +342,7 @@ public class FriendList extends ListActivity {
 			/* Load the row-entry-format defined as a String 
 			 * and replace $name with the contact's name we 
 			 * get from the cursor */
-			String curLine = new String(getString(R.string.main_list_format));
+			String curLine = new String(getString(R.string.friendlist_list_format));
 			curLine = curLine.replace("$name", aNearFriend.itsName);
 			
 			if(aNearFriend.itsLocation != null){
@@ -356,7 +356,7 @@ public class FriendList extends ListActivity {
 				}
 			}else{
 				curLine = curLine.replace("$distance", 
-						getString(R.string.main_list_geo_not_set));
+						getString(R.string.friendlist_list_geo_not_set));
 			}
 			
 			listItems.add(curLine);
@@ -399,7 +399,7 @@ public class FriendList extends ListActivity {
             dis.readInt();
             dis.readInt();
             dis.readUTF();
-            Log.i(getString(R.string.main_title), "Lat, Long: " + lat + "," + lng);
+            Log.i(getString(R.string.friendlist_title), "Lat, Long: " + lat + "," + lng);
 
             /*
              * Store Lat y Long in MyLocation Object

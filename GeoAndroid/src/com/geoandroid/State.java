@@ -2,8 +2,7 @@ package com.geoandroid;
 
 import java.util.Hashtable;
 
-public class State 
-{
+public class State {
 	private final static State INSTANCE = new State();
 	
 	public static String user = "user";

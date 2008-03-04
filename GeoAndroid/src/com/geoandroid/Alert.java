@@ -1,7 +1,6 @@
 package com.geoandroid;
 
-public class Alert
-{
+public class Alert {
 	public static String Text = "";
 	public static String Url = "";
 	public static String Latitude = "";
