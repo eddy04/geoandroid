@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >       
-     <view class="com.google.android.maps.MapView"
+    android:layout_height="fill_parent" >
+        
+    <view   class="com.google.android.maps.MapView"
             android:id="@+id/myMapView"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"/>    
-</LinearLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>    
+          
+    <Button android:id="@+id/map_button_zoomin"
+	        style="?android:attr/buttonStyleSmallDown"
+	        android:text="@string/map_button_zoomin"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignRight="@id/root" />
+        
+    <Button android:id="@+id/map_button_zoomout"
+	        style="?android:attr/buttonStyleSmallUp"
+	        android:text="@string/map_button_zoomout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:layout_alignRight="@id/root"
+	        android:layout_below="@id/map_button_zoomin" />
+        
+</RelativeLayout>
