@@ -1,4 +1,4 @@
-package com.geoandroid;
+package com.geoandroid.web;
 
 public class Alert {
 	public static String Text = "";

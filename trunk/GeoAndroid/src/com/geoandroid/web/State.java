@@ -1,6 +1,7 @@
-package com.geoandroid;
+package com.geoandroid.web;
 
 import java.util.Hashtable;
+
 
 public class State {
 	private final static State INSTANCE = new State();
