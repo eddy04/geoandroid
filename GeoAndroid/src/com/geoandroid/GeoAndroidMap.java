@@ -3,14 +3,11 @@ package com.geoandroid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentReceiver;
-import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -20,10 +17,11 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Contacts.People;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.geoandroid.web.Friend;
 import com.geoandroid.web.Ipoki;
@@ -186,11 +184,28 @@ public class GeoAndroidMap extends MapActivity {
 		}
 		
 		/* Create a new MapView and show it */
-		this.myMapView = new MapView(this);
+		//this.myMapView = new MapView(this);
+		//this.setContentView(myMapView);
 		
-		this.setContentView(myMapView);
-		//this.setContentView(R.layout.map); TODO add xml layout
+		this.setContentView(R.layout.map);
 		
+		this.myMapView = (MapView) findViewById(R.id.myMapView);
+		
+		/* Button listeners */
+		findViewById(R.id.map_button_zoomin).setOnClickListener(new OnClickListener(){
+             @Override
+             public void onClick(View arg0) {
+ 		    	// Zoom not closer than possible
+ 		    	myMapController.zoomTo(Math.min(21, myMapView.getZoomLevel() + 1));
+             }
+        }); 
+        findViewById(R.id.map_button_zoomout).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+		    	// Zoom not more far than possible
+		    	myMapController.zoomTo(Math.min(21, myMapView.getZoomLevel() - 1));
+            }
+       }); 
 		/* MapController is capable of zooming 
 		 * and animating and stuff like that */
 		this.myMapController = this.myMapView.getController();

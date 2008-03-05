@@ -2,7 +2,6 @@ package com.geoandroid.web;
 
 import java.io.*;
 
-import java.net.MalformedURLException;
 import java.net.URL; 
 import java.net.HttpURLConnection;
 import java.io.IOException;
@@ -10,8 +9,6 @@ import java.io.InputStream;
 
 import android.graphics.Bitmap;
 import android.location.Location;
-
-import com.geoandroid.*;
 
 public class Ipoki {
 

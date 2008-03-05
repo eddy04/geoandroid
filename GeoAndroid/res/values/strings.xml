@@ -7,6 +7,8 @@
     <string name="map_menu_friendlist">Friend list</string>
     <string name="map_menu_toggle_street_satellite">Toggle View: Street / Satellite (Key: T)</string>
     <string name="map_overlay_own_name">Me</string>
+    <string name="map_button_zoomin">+</string>
+    <string name="map_button_zoomout">-</string>
     
     <string name="friendlist_title">Friends</string>
     <string name="friendlist_list_format">$name ($distance km)</string>
