@@ -1,4 +1,4 @@
-package com.geoandroid;
+package com.geoandroid.web;
 
 public class RecordTypes {
 	public static final int USER = 1;

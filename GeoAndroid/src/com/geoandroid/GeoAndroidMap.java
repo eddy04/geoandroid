@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 
+import com.geoandroid.web.Friend;
 import com.geoandroid.web.Ipoki;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;

@@ -1,4 +1,4 @@
-package com.geoandroid;
+package com.geoandroid.web;
 
 import android.location.Location;
 
