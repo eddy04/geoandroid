@@ -12,7 +12,7 @@ public class Settings extends ListActivity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-
+		this.setTheme(android.R.style.Theme_Dialog); 
 
 	}
 	
