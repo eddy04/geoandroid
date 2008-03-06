@@ -190,6 +190,8 @@ public class GeoAndroidMap extends MapActivity {
 		this.setContentView(R.layout.map);
 		
 		this.myMapView = (MapView) findViewById(R.id.myMapView);
+		//Default satellite view
+		this.myMapView.toggleSatellite(); 
 		
 		/* Button listeners */
 		findViewById(R.id.map_button_zoomin).setOnClickListener(new OnClickListener(){
@@ -287,11 +289,10 @@ public class GeoAndroidMap extends MapActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean supRetVal = super.onCreateOptionsMenu(menu);
-		menu.add(0, 0, getString(R.string.map_menu_zoom_in));
-		menu.add(0, 1, getString(R.string.map_menu_zoom_out));
-		menu.add(0, 2, getString(R.string.map_menu_toggle_street_satellite));
-		menu.add(0, 3, getString(R.string.map_menu_friendlist));
-		menu.add(0, 4, getString(R.string.map_menu_settings));
+		menu.add(0, 0, getString(R.string.map_menu_toggle_street_satellite));
+		menu.add(0, 1, getString(R.string.map_menu_toggle_traffic));
+		menu.add(0, 2, getString(R.string.map_menu_friendlist));
+		menu.add(0, 3, getString(R.string.map_menu_settings));
 		return supRetVal;
 	}
 	
@@ -299,21 +300,17 @@ public class GeoAndroidMap extends MapActivity {
 	public boolean onOptionsItemSelected(Menu.Item item){
 	    switch (item.getId()) {
 		    case 0:
-		    	// Zoom not closer than possible
-		    	this.myMapController.zoomTo(Math.min(21, this.myMapView.getZoomLevel() + 1));
-		        return true;
-		    case 1:
-		    	// Zoom not farer than possible 
-		    	this.myMapController.zoomTo(Math.max(1, this.myMapView.getZoomLevel() - 1));
-		        return true;
-		    case 2:
-	        	// Switch to satellite view
+	        	// Toggle satellite view
 	            myMapView.toggleSatellite();
 		        return true;
-		    case 3:
+		    case 1:
+		    	//Toggle traffic view
+		    	myMapView.toggleTraffic();
+		    	return true;
+		    case 2:
 		    	startSubActivity(new Intent(this, FriendList.class), 0);
 		        return true;
-		    case 4:
+		    case 3:
 		    	startSubActivity(new Intent(this, Settings.class), 0);
 		        return true;
 	    }

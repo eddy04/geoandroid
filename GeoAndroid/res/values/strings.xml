@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_title">GeoAndroid</string>
-    <string name="map_menu_zoom_in">Zoom in (Key: I)</string>
-    <string name="map_menu_zoom_out">Zoom out (Key: O)</string>
     <string name="map_menu_settings">Settings</string>
     <string name="map_menu_friendlist">Friend list</string>
-    <string name="map_menu_toggle_street_satellite">Toggle View: Street / Satellite (Key: T)</string>
+    <string name="map_menu_toggle_street_satellite">Toggle satellite</string>
+    <string name="map_menu_toggle_traffic">Toggle traffic</string>
     <string name="map_overlay_own_name">Me</string>
     <string name="map_button_zoomin">+</string>
     <string name="map_button_zoomout">-</string>

@@ -155,13 +155,7 @@ public class FriendList extends ListActivity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-
-		/* Log on to web service */
-		try {
-			Ipoki.sendWebReg("dangrahn", "passpass");
-		} catch(IOException e) {
-			 Log.e(getString(R.string.friendlist_title), e.toString(), e);
-		}
+		this.setTheme(android.R.style.Theme_Dialog); 
 		
 		/* The first thing we need to do is to setup our own 
 		 * locationManager, that will support us with our own gps data */
@@ -212,13 +206,6 @@ public class FriendList extends ListActivity {
 	@Override
 	public void onFreeze(Bundle icicle) {
 		this.doUpdates = false;
-		
-		/* Log out of web service 
-		try {
-			Ipoki.sendWebDisconnection();
-		} catch(IOException e) {
-			 Log.e(getString(R.string.main_title), e.toString(), e);
-		}*/
 		
 		this.unregisterReceiver(this.myIntentReceiver);
 		super.onFreeze(icicle);
@@ -322,7 +309,7 @@ public class FriendList extends ListActivity {
 		// Refresh our location...
 		this.myLocation = myLocationManager.getCurrentLocation("gps");
 		
-		//Add new position to web service
+		//Send our position to web service
 		try {
 			Ipoki.sendWebPos(Double.toString(this.myLocation.getLatitude()), Double.toString(this.myLocation.getLongitude()));
 		} catch(IOException e) {
