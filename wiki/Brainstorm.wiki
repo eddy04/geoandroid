@@ -16,6 +16,7 @@
  * Driving directions
  * Traffic info (android SDK)
  * Geocode / Reverse Geocode
+ * WikiMapia (like wikipedia but at geo positions)
 
 ===Web service needed for:===
  * Train/Bus info
